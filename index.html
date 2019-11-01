@@ -1,9 +1,9 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="fr">
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Le Détour - Recherche des membres</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,18 +13,42 @@
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/app.css">
 
   <meta name="theme-color" content="#fafafa">
+
+  <!-- Ensure section are hidden by default to prevent flickering while waiting
+  app.css to be loaded
+  -->
+  <style>
+    section {
+      display: none;
+    }
+  </style>
 </head>
 
-<body>
+<body data-fetching-status="idle">
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/main.js"></script>
+  <h1>Recherche des membres</h1>
+
+  <section id="fetching">Téléchargement des données des membres...</section>
+
+  <section id="error">
+    <p>Erreur lors du téléchargement des données des membres.</p>
+    <p>Veuillez reporter l'erreur suivante au comité informatique:</p>
+    <pre id="exception"></pre>
+  </section>
+
+  <section id="ready">
+    <p>Dernière mise jour le <time id="updated-at" datetime="">inconnu</time></p>
+
+    <input id="search" type="search" min=1 placeholder="Numéro de membre" pattern="[0-9]+" title="Numéro de membre">
+  </section>
+
+  <script src="js/main.js" async></script>
 </body>
 
 </html>

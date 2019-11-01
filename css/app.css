@@ -1,0 +1,11 @@
+body[data-fetching-status="fetching"] > #fetching {
+  display: unset;
+}
+
+body[data-fetching-status="error"] > #error {
+  display: unset;
+}
+
+body[data-fetching-status="ready"] > #ready {
+  display: unset;
+}
