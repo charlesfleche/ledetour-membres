@@ -6,11 +6,11 @@
       "hours_in_bank": 9
     },
     "444": {
-      "status": false,
+      "active": false,
       "hours_in_bank": -3
     },
     "555": {
-      "status": true,
+      "active": true,
       "hours_in_bank": 0
     }
   }

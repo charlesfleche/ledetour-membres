@@ -11,7 +11,7 @@ body[data-fetching-status="ready"] > #ready {
 }
 
 #member[data-status=""] {
-  display: none;
+  visibility: hidden;
 }
 
 #member[data-status="false"] > #member-active {
@@ -20,4 +20,17 @@ body[data-fetching-status="ready"] > #ready {
 
 #member[data-status="true"] > #member-not-active {
   display: none;
+}
+
+#keyboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1%;
+}
+
+#keyboard > div {
+  user-select: none;
+  /* line-height: 10vh; */
+  /* margin: 0px; */
+  /* font-size: 5vh; */
 }
