@@ -45,7 +45,10 @@
   <section id="ready">
     <p>Dernière mise jour le <time id="updated-at" datetime="">inconnu</time></p>
 
-    <input id="search" type="search" min=1 placeholder="Numéro de membre" pattern="[0-9]+" title="Numéro de membre">
+    <input id="search" type="search" placeholder="Numéro de membre" pattern="[0-9]+" title="Numéro de membre">
+    <p id="member" data-status="">
+      <span id="member-active">Active</span><span id="member-not-active">Not active</span> <span id="member-hours"></span> hours
+    </p>
   </section>
 
   <script src="js/main.js" async></script>

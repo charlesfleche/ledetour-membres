@@ -9,3 +9,15 @@ body[data-fetching-status="error"] > #error {
 body[data-fetching-status="ready"] > #ready {
   display: unset;
 }
+
+#member[data-status=""] {
+  display: none;
+}
+
+#member[data-status="false"] > #member-active {
+  display: none;
+}
+
+#member[data-status="true"] > #member-not-active {
+  display: none;
+}
