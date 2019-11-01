@@ -2,6 +2,7 @@
 
 (async function() {
   const ELEMENT_ID_EXCEPTION = "exception"
+  const ELEMENT_ID_KEYBOARD = "keyboard"
   const ELEMENT_ID_MEMBER = "member"
   const ELEMENT_ID_MEMBER_ACTIVE = "member-active"
   const ELEMENT_ID_MEMBER_HOURS = "member-hours"
@@ -71,13 +72,39 @@
     }
   }
 
-  document.getElementById(ELEMENT_ID_SEARCH).addEventListener("input", (ev) => {
-    const memberId = ev.target.value
+  function appendValueToMemberSearchField(value) {
+    const el = document.getElementById(ELEMENT_ID_SEARCH)
+    el.value += value
+  }
+
+  function resetMemberSearchField() {
+    const el = document.getElementById(ELEMENT_ID_SEARCH)
+    el.value = ""
+  }
+
+  function handleVirtualKeyboardKeyPress(ev) {
+    const value = ev.target.dataset.value;
+    if (value == 'cancel' || value == 'done') {
+      resetMemberSearchField();
+    } else {
+      appendValueToMemberSearchField(value);
+    }
+    updateMemberView()
+  }
+
+  function updateMemberView() {
+    const memberId = document.getElementById(ELEMENT_ID_SEARCH).value
     const member = members[memberId] || null
     showMember(member)
-  })
+  }
 
   //
+
+  document.getElementById(ELEMENT_ID_SEARCH).addEventListener("input", updateMemberView)
+
+  for (const key of document.getElementById(ELEMENT_ID_KEYBOARD).children) {
+    key.addEventListener("click", handleVirtualKeyboardKeyPress)
+  }
 
   await updateMembersData()
 })()
