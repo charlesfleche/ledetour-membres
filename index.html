@@ -31,10 +31,15 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
+  <header>
+    <img src="/img/mock-logo-le-detour.png" alt="Logo épicerie Le Détour"></img>
+    <h1>Membres</h1>
+    <p>MAJ: <time id="updated-at" datetime="">date inconnue</time></p>
+  </header>
 
-  <h1>Recherche des membres</h1>
-
-  <section id="fetching">Téléchargement des données des membres...</section>
+  <section id="fetching">
+    <p>Téléchargement des données des membres...</p>
+  </section>
 
   <section id="error">
     <p>Erreur lors du téléchargement des données des membres.</p>
@@ -43,11 +48,9 @@
   </section>
 
   <section id="ready">
-    <p>Dernière mise jour le <time id="updated-at" datetime="">inconnu</time></p>
-
     <input id="search" type="search" placeholder="Numéro de membre" pattern="[0-9]+" title="Numéro de membre">
     <p id="member" data-status="">
-      <span id="member-active">Active</span><span id="member-not-active">Not active</span> <span id="member-hours"></span> hours
+      <span id="member-active">Actif</span><span id="member-not-active">Inactif</span> (<span id="member-hours"></span> heures)
     </p>
     <div id="keyboard">
       <button data-value="1">1</button>
@@ -64,7 +67,6 @@
       <button data-value="done">✓</button>
     </div>
   </section>
-
   <script src="js/main.js" async></script>
 </body>
 

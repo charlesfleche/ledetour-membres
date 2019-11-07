@@ -1,17 +1,135 @@
+:root {
+  --text-color: black;
+  --text-color-alternate: grey;
+  --background-color: rgb(248, 248, 248);
+  --background-color-light: lightgrey;
+  --color-warning: darkorange;
+  --color-valid: green;
+  --padding: 1vmin;
+}
+
+html {
+  font-family: sans-serif;
+  background-color: var(--background-color);
+  height: 100%;
+  margin-left: var(--padding);
+  margin-right: var(--padding);
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  color: var(--text-color-alternate);
+}
+
+header, section {
+  overflow: hidden;
+}
+
+h1, p, pre {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+pre {
+  max-width: 100%;
+  font-size: .75rem;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  white-space: nowrap;
+}
+
+header > * {
+  margin: 0;
+  padding: 0;
+}
+
+header > h1 {
+  margin-left: var(--padding);
+}
+
+header > img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+header > p {
+  margin-left: auto;
+  display: none;
+}
+
+body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: var(--padding);
+  display: grid;
+  grid-template-rows: 4rem auto;
+  grid-gap: var(--padding);
+}
+
+body > section {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 body[data-fetching-status="fetching"] > #fetching {
-  display: unset;
+  display: flex;
+  /* font-size: 2em; */
 }
 
 body[data-fetching-status="error"] > #error {
-  display: unset;
+  display: flex;
 }
 
 body[data-fetching-status="ready"] > #ready {
-  display: unset;
+  display: grid;
+}
+
+#ready {
+  grid-template-columns: 100%;
+  grid-template-rows: 10vh 10vh auto;
+  grid-gap: var(--padding);
+  font-size: 5vh;
+  text-align: center;
+  align-items: stretch;
+}
+
+#ready > input {
+  height: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+#ready > p {
+  margin: auto;
+  white-space: nowrap;
 }
 
 #member[data-status=""] {
   visibility: hidden;
+}
+
+#member[data-status="true"] {
+  color: var(--color-valid);
+}
+
+#member[data-status="false"] {
+  color: var(--color-warning);
 }
 
 #member[data-status="false"] > #member-active {
@@ -25,12 +143,28 @@ body[data-fetching-status="ready"] > #ready {
 #keyboard {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1%;
+  grid-gap: var(--padding);
 }
 
 #keyboard > div {
   user-select: none;
-  /* line-height: 10vh; */
-  /* margin: 0px; */
-  /* font-size: 5vh; */
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: var(--background-color-light);
+}
+
+button[data-value="cancel"] {
+  background-color: var(--color-warning);
+}
+
+button[data-value="done"] {
+  background-color: var(--color-valid );
+}
+
+button:active {
+  background-color: grey;
 }
