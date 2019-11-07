@@ -33,6 +33,7 @@
 
     const date = new Date(dateISOString)
     el.innerText = date.toLocaleString()
+    console.log(`Last update: ${date}`)
   }
 
   function setExceptionMessage(exception) {

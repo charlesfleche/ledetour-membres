@@ -5,7 +5,7 @@
   --background-color-light: lightgrey;
   --color-error: darkred;
   --color-warning: darkorange;
-  --color-valid: green;
+  --color-valid: mediumseagreen;
   --padding: 1vmin;
 }
 
@@ -65,7 +65,6 @@ header > img {
 
 header > p {
   margin-left: auto;
-  display: none;
 }
 
 body {
@@ -98,6 +97,10 @@ body[data-fetching-status="error"] > #error {
 
 body[data-fetching-status="ready"] > #ready {
   display: grid;
+}
+
+#update-time {
+  display: none;
 }
 
 #ready {
@@ -161,6 +164,7 @@ button {
 
 button[data-value="cancel"] {
   background-color: var(--color-warning);
+  visibility: hidden;
 }
 
 button[data-value="done"] {
