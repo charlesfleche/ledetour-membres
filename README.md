@@ -4,7 +4,7 @@
 
 This page allow members to check their activity status by entering their member number ID.
 
-![Screenshot](doc/screenshot.png)
+![Screenshot](screenshot.png)
 
 ## Data fetch
 
