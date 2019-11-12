@@ -167,11 +167,11 @@ button {
 
 button[data-value="cancel"] {
   background-color: var(--color-warning);
-  visibility: hidden;
 }
 
 button[data-value="done"] {
   background-color: var(--color-valid );
+  visibility: hidden;
 }
 
 button:active {
