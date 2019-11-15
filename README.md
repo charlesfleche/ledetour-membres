@@ -37,6 +37,10 @@ an JSON suitable for the WebUI. Run it like:
 $ scripts/get-members-json.sh /path/to/final/members.json
 ```
 
+## Extracting data from Google Spreadsheet
+
+A Google App Script is defined in the [gscript folder](gscript) folder. This script fetches data in the relevant spreadsheet in the Détour Google Drive and serves it in a JSON suitable for consumption by the UI. On production server it is expected that the `/members.json` file is updated on a regular basis by systemd timer, a cron job of anything similar.
+
 ## Serve
 
 The page is a static website that can be served with any simple web server. For example, in python 3:
