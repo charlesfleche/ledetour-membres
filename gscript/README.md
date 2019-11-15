@@ -2,7 +2,8 @@
 
 This is a Google Apps Script that reads user data from a Google Sheet and exports a JSON file.
 
-**The current version is beta and does not exports hours for members in a family membership who are not the "chef de famille".**
+# Change log
+- 15 Nov 2019 - json now includes hours for all family members.
 
 ## Development Environment
 
