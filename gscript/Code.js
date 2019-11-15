@@ -8,21 +8,18 @@ function doGet(e) {
   // get range of dimensions in which data is present. 
   var dataRange = sheet.getDataRange();
   
-  Logger.log("Last column: " + dataRange.getLastColumn());
-  Logger.log("Last row: " + dataRange.getLastRow());
+  //Logger.log("Last column: " + dataRange.getLastColumn());
+  //Logger.log("Last row: " + dataRange.getLastRow());
   
   // Store the entire table in a multi-dimenssional array
   var dataArray = dataRange.getValues();
   dataArray.shift();  // remove table headers
   
   var filteredObject = makeTableObject(dataArray);
-    
   var result = JSON.stringify(filteredObject);
-  Logger.log(e);
   Logger.log(result);
   
   return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON);
-  
 }
 
 function makeTableObject(multiArray){
@@ -39,8 +36,17 @@ function makeTableObject(multiArray){
     
   multiArray.forEach(function(row, i){
     
-    var status = (row[STATUS_COL] == "Actif");  
-    var hours = ( row[MEMBER_COL] == row[FAM_COL] ? row[FAM_HRS_COL] : row[INDI_HRS_COL] );  // this is an over-simplification. See TODO below.
+    var status = (row[STATUS_COL] == "Actif");
+    var member = row[MEMBER_COL];
+    var family = row[FAM_COL];
+    var hours;
+    
+    // If family, return the hours for the chef de famille, otherwise return the individual member hours.
+    if(isFamily(member, family)){
+      hours = ( member == family ? row[FAM_HRS_COL] : getChefHours(multiArray, family, FAM_HRS_COL) );
+    }else{
+      hours = row[INDI_HRS_COL];
+    }
     
     tableObject.members[row[MEMBER_COL]] = {
       active: status,
@@ -50,11 +56,14 @@ function makeTableObject(multiArray){
   return tableObject;
 }
 
-// TODO: Check if family membership and load family hours for each member instead of only for 'chef de famille' and individuals.
 function isFamily(member, family){
   if (family == ''){ // empty string
     return false
   } else if (typeof family == "number"){
     return true
   }
+}
+function getChefHours(array, family, FAM_HRS_COL){
+  var hours = array[family-2][FAM_HRS_COL];  // -2 is for matching member number to array index (eg. member 2 is at index 0).
+  return hours;
 }
