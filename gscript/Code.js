@@ -29,6 +29,8 @@ function makeTableObject(multiArray){
   const MEMBER_COL = 3;
   const INDI_HRS_COL = 21;
   const FAM_HRS_COL = INDI_HRS_COL + 1;
+  const VRAI_INDI_HRS_COL = 29;               // col AD
+  const VRAI_FAM_HRS_COL = VRAI_INDI_HRS_COL + 1;  // col AE
 
   var tableObject = {};
   tableObject.updated_at = new Date();
@@ -46,9 +48,9 @@ function makeTableObject(multiArray){
 
     // If family, return the hours for the chef de famille, otherwise return the individual member hours.
     if(isFamily(member, family)){
-        hours = ( member == family ? row[FAM_HRS_COL] : getChefHours(multiArray, family, FAM_HRS_COL) );
+        hours = ( member == family ? row[VRAI_FAM_HRS_COL] : getChefHours(multiArray, family, VRAI_FAM_HRS_COL) );
       }else{
-        hours = row[INDI_HRS_COL];
+        hours = row[VRAI_INDI_HRS_COL];
       }
 
     tableObject.members[row[MEMBER_COL]] = {
@@ -66,7 +68,7 @@ function isFamily(member, family){
     return true
   }
 }
-function getChefHours(array, family, FAM_HRS_COL){
-  var hours = array[family-2][FAM_HRS_COL];  // -2 is for matching member number to array index (eg. member 2 is at index 0).
+function getChefHours(array, family, VRAI_FAM_HRS_COL){
+  var hours = array[family-2][VRAI_FAM_HRS_COL];  // -2 is for matching member number to array index (eg. member 2 is at index 0).
   return hours;
 }

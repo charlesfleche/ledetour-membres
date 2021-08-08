@@ -3,6 +3,7 @@
 This is a Google Apps Script that reads user data from a Google Sheet and exports a JSON file. The script is hosted by Google and is published as "Deploy as web app". It runs everytime a get request is made to the published URL.
 
 # Change log
+- 7 Aug 2021 - indi and fam hours are now taken from "VRAI" columns AD and AE.
 - 15 Nov 2019 - json now includes hours for all family members.
 
 ## Development Environment
