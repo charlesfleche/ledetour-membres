@@ -102,6 +102,11 @@ body[data-fetching-status="ready"] > #ready {
   display: none;
 }
 
+#cycle-end-p {
+  font-size: 3vh;
+  font-weight: 600;
+}
+
 #ready {
   grid-template-columns: 100%;
   grid-template-rows: 10vh 10vh auto;
