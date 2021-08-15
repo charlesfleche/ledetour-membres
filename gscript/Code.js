@@ -1,15 +1,15 @@
+const MEMBER_LIST_URL = "https://docs.google.com/spreadsheets/d/1Qry9z3gHLcgnjGPBTacTJwSzOS_aTs6YB54tfoOsYMM/edit#gid=79616268";
+
 function doGet(e) {
 
-  const MEMBER_LIST_URL = "https://docs.google.com/spreadsheets/d/1Qry9z3gHLcgnjGPBTacTJwSzOS_aTs6YB54tfoOsYMM/edit#gid=79616268";
   const SHEET_NAME ="liste des membres"
-
   sheet = SpreadsheetApp.openByUrl(MEMBER_LIST_URL).getSheetByName(SHEET_NAME);
 
   // get range of dimensions in which data is present.
   var dataRange = sheet.getDataRange();
 
-  Logger.log("Last column: " + dataRange.getLastColumn());
-  Logger.log("Last row: " + dataRange.getLastRow());
+  // Logger.log("Last column: " + dataRange.getLastColumn());
+  // Logger.log("Last row: " + dataRange.getLastRow());
 
   // Store the entire table in a multi-dimenssional array
   var dataArray = dataRange.getValues();
@@ -17,7 +17,7 @@ function doGet(e) {
 
   var filteredObject = makeTableObject(dataArray);
   var result = JSON.stringify(filteredObject);
-  Logger.log(result);
+  // Logger.log(result);
 
   return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON);
 }
@@ -34,6 +34,7 @@ function makeTableObject(multiArray){
 
   var tableObject = {};
   tableObject.updated_at = new Date();
+  tableObject.cycle_end = getCycleEndDate();
   tableObject.members = {};
 
   multiArray.forEach(function(row, i){
@@ -72,3 +73,17 @@ function getChefHours(array, family, VRAI_FAM_HRS_COL){
   var hours = array[family-2][VRAI_FAM_HRS_COL];  // -2 is for matching member number to array index (eg. member 2 is at index 0).
   return hours;
 }
+
+function getCycleEndDate(){
+  const SHEET_STATS = 'Stats'
+  const DATE_CELL_A1 = "B4"
+
+  const statsSheet = SpreadsheetApp.openByUrl(MEMBER_LIST_URL).getSheetByName(SHEET_STATS)
+  const cell = statsSheet.getRange(DATE_CELL_A1)
+  Logger.log(JSON.stringify(cell.getValue()))
+
+  return cell.getValue()
+}
+
+
+
