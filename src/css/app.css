@@ -21,7 +21,7 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: left;
+  justify-content: space-between;
   color: var(--text-color-alternate);
 }
 
@@ -100,6 +100,11 @@ body[data-fetching-status="ready"] > #ready {
 
 #update-time {
   display: none;
+}
+
+#cycle-end-p {
+  font-size: 3vh;
+  font-weight: 600;
 }
 
 #ready {

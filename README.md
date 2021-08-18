@@ -13,6 +13,7 @@ The WebUI expects a `/members.json` with such a structure:
 ``` json
 {
   "updated_at": "2019-11-01T02:05:45.512Z",
+  "cycle_end": "2019-11-29T04:00:00.000Z",
   "members": {
     "333": {
       "active": true,

@@ -1,6 +1,6 @@
 'use strict';
 
-(async function() {
+(async function () {
   const ELEMENT_ID_EXCEPTION = "exception"
   const ELEMENT_ID_KEYBOARD = "keyboard"
   const ELEMENT_ID_MEMBER = "member"
@@ -8,6 +8,7 @@
   const ELEMENT_ID_MEMBER_HOURS = "member-hours"
   const ELEMENT_ID_SEARCH = "search"
   const ELEMENT_ID_UPDATED_AT = "updated-at"
+  const ELEMENT_ID_CYCLE_END = "cycle-end-time"
 
   const MEMBERS_DATA_URL = '/members.json'
   const FETCH_STATUS_FETCHING = 'fetching'
@@ -22,18 +23,40 @@
 
   function setMembersData(membersData) {
     setUpdateDate(membersData.updated_at)
+    setCycleEndDate(membersData.cycle_end)
     document.body.dataset.fetchingStatus = status
     members = membersData.members
   }
 
-  function setUpdateDate(dateISOString) {
-    const el = document.getElementById(ELEMENT_ID_UPDATED_AT)
+  // format and options are optional
+  // For toLocaleString arguments see https://stackoverflow.com/questions/2388115/get-locale-short-date-format-using-javascript
 
+  function setDate(dateISOString, element, format, options) {
+    const el = document.getElementById(element)
     el.datetime = dateISOString
-
     const date = new Date(dateISOString)
-    el.innerText = date.toLocaleString()
+
+    if (format && options) el.innerText = date.toLocaleString(format, options)
+    else el.innerText = date.toLocaleString()
+    
+    return date
+  }
+
+  function setUpdateDate(dateISOString) {
+    const date = setDate(dateISOString, ELEMENT_ID_UPDATED_AT)
     console.log(`Last update: ${date}`)
+  }
+
+  function setCycleEndDate(dateISOString) {
+    const locale = "fr-CA"
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    }
+
+    const date = setDate(dateISOString, ELEMENT_ID_CYCLE_END, locale, options)
+    console.log(`Cycle end date: ${date}`)
   }
 
   function setExceptionMessage(exception) {
