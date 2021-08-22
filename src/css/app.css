@@ -21,8 +21,14 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   color: var(--text-color-alternate);
+}
+
+header > div {
+  margin-left: var(--padding);
+  display: flex;
+  flex-direction: column;
 }
 
 header, section {
@@ -43,28 +49,36 @@ pre {
 p {
   margin: 0;
   padding: 0;
+  font-size: 90%;
 }
 
 h1 {
+  margin: 0;
+  padding: 0;
   white-space: nowrap;
 }
 
 header > * {
-  margin: 0;
+  margin-top: var(--padding);
+  margin-bottom: var(--padding);
   padding: 0;
 }
 
-header > h1 {
+header > div {
   margin-left: var(--padding);
 }
 
 header > img {
-  max-height: 100%;
-  max-width: 100%;
+  margin-right: var(--padding);
+  max-height: 10vmin;
 }
 
-header > p {
-  margin-left: auto;
+header > div > h1 {
+  font-size: 4vmin;
+}
+
+header > div > p {
+  font-size: 3vmin;
 }
 
 body {
@@ -74,20 +88,19 @@ body {
   left: 0;
   right: 0;
   margin: var(--padding);
-  display: grid;
-  grid-template-rows: 4rem auto;
-  grid-gap: var(--padding);
+  display: flex;
+  flex-direction: column;
 }
 
 body > section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1;
 }
 
 body[data-fetching-status="fetching"] > #fetching {
   display: flex;
-  /* font-size: 2em; */
 }
 
 body[data-fetching-status="error"] > #error {
@@ -100,11 +113,6 @@ body[data-fetching-status="ready"] > #ready {
 
 #update-time {
   display: none;
-}
-
-#cycle-end-p {
-  font-size: 3vh;
-  font-weight: 600;
 }
 
 #ready {
