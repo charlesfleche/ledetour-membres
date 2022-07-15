@@ -1,8 +1,8 @@
-function doGet(e) {
+// Get Member List Url from library DetourTableauUrl
+// Library code: https://script.google.com/u/1/home/projects/1rLXj5KqFRmp91KFSI4wwViFda6-0vG4_QqYGAgWmk_ApYpAtnUv-4Hzr/edit
+const MEMBER_LIST_URL = DetourTableauUrl.loadUrlListeMembres();
 
-  // Get Member List Url from library DetourTableauUrl
-  // Library code: https://script.google.com/u/1/home/projects/1rLXj5KqFRmp91KFSI4wwViFda6-0vG4_QqYGAgWmk_ApYpAtnUv-4Hzr/edit
-  const MEMBER_LIST_URL = DetourTableauUrl.loadUrlListeMembres();
+function doGet(e) {
 
   const SHEET_NAME ="liste des membres"
   sheet = SpreadsheetApp.openByUrl(MEMBER_LIST_URL).getSheetByName(SHEET_NAME);
