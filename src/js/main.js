@@ -25,7 +25,7 @@
   }
 
   function setMembersData(membersData) {
-    setPrivateData(membersData.contains_private_data)
+    setPrivateData(!!membersData.contains_private_data)
     setUpdateDate(membersData.updated_at)
     setCycleEndDate(membersData.cycle_end)
     members = membersData.members
@@ -86,10 +86,13 @@
     if (member) {
       status = member.active
       hours = member.hours_in_bank
-      const firstName = member.first_name || ""
-      const familyName = member.family_name || ""
-      name = `${firstName} ${familyName}`
-      phone = member.phone
+      phone = member.phone || ""
+
+      const firstName = member.first_name
+      const familyName = member.family_name
+      if (!!(firstName && familyName)) {
+        name = `${firstName} ${familyName}`
+      }
     }
 
     document.getElementById(ELEMENT_ID_MEMBER).dataset.status = status
