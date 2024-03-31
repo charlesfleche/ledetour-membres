@@ -6,6 +6,9 @@
   const ELEMENT_ID_MEMBER = "member"
   const ELEMENT_ID_MEMBER_ACTIVE = "member-active"
   const ELEMENT_ID_MEMBER_HOURS = "member-hours"
+  const ELEMENT_ID_MEMBER_NAME = "member-name"
+  const ELEMENT_ID_MEMBER_PHONE = "member-phone"
+  const ELEMENT_ID_PRIVATE = "private"
   const ELEMENT_ID_SEARCH = "search"
   const ELEMENT_ID_UPDATED_AT = "updated-at"
   const ELEMENT_ID_CYCLE_END = "cycle-end-time"
@@ -22,9 +25,9 @@
   }
 
   function setMembersData(membersData) {
+    setPrivateData(membersData.contains_private_data)
     setUpdateDate(membersData.updated_at)
     setCycleEndDate(membersData.cycle_end)
-    document.body.dataset.fetchingStatus = status
     members = membersData.members
   }
 
@@ -40,6 +43,10 @@
     else el.innerText = date.toLocaleString()
     
     return date
+  }
+
+  function setPrivateData(containsPrivateData) {
+    document.getElementById(ELEMENT_ID_PRIVATE).dataset.private = containsPrivateData
   }
 
   function setUpdateDate(dateISOString) {
@@ -74,13 +81,21 @@
   function showMember(member) {
     let status = ""
     let hours = ""
+    let name = ""
+    let phone = ""
     if (member) {
       status = member.active
       hours = member.hours_in_bank
+      const firstName = member.first_name || ""
+      const familyName = member.family_name || ""
+      name = `${firstName} ${familyName}`
+      phone = member.phone
     }
 
     document.getElementById(ELEMENT_ID_MEMBER).dataset.status = status
     document.getElementById(ELEMENT_ID_MEMBER_HOURS).innerText = hours
+    document.getElementById(ELEMENT_ID_MEMBER_NAME).innerText = name
+    document.getElementById(ELEMENT_ID_MEMBER_PHONE).innerText = phone
   }
 
   async function updateMembersData() {
