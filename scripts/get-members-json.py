@@ -10,8 +10,8 @@ _ENV_ANONYMIZED_PATH = "LDT_MEMBRES_ANONYMIZED_PATH"
 _ENV_NON_ANONYMIZED_PATH = "LDT_MEMBRES_NON_ANONYMIZED_PATH"
 
 _DEFAULT_GOOGLE_SCRIPT_WEB_APP_URL = ""
-_DEFAULT_ANONYMIZED_PATH = "/var/run/ledetour-membres/members-anonymized.json"
-_DEFAULT_NON_ANONYMIZED_PATH = "/var/run/ledetour-membres/members-non-anonymized.json"
+_DEFAULT_ANONYMIZED_PATH = "members-anonymized.json"
+_DEFAULT_NON_ANONYMIZED_PATH = "members-non-anonymized.json"
 
 
 def filter_keys(data: dict, keys_to_keep: list) -> dict:
