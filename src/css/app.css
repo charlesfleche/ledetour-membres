@@ -117,7 +117,7 @@ body[data-fetching-status="ready"] > #ready {
 
 #ready {
   grid-template-columns: 100%;
-  grid-template-rows: 10vh 10vh auto;
+  grid-template-rows: 10vh 10vh 10vh auto;
   grid-gap: var(--padding);
   font-size: 5vh;
   text-align: center;
@@ -155,6 +155,18 @@ body[data-fetching-status="ready"] > #ready {
 
 #member[data-status="true"] > #member-not-active {
   display: none;
+}
+
+#private {
+  font-size: 3vmin;
+}
+
+#private[data-private=""] {
+  display: none;
+}
+
+#private[data-private="true"] {
+  display: block;
 }
 
 #keyboard {
