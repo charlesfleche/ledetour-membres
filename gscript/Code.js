@@ -27,6 +27,9 @@ function doGet(e) {
 function makeTableObject(multiArray){
 
   const STATUS_COL = 0;
+  const FAMILYNAME_COL = 5;
+  const FIRSTNAME_COL = 6;
+  const PHONE_COL = 9;
   const FAM_COL = 2;
   const MEMBER_COL = 3;
   const INDI_HRS_COL = 21;
@@ -38,6 +41,10 @@ function makeTableObject(multiArray){
   tableObject.updated_at = new Date();
   tableObject.cycle_end = getCycleEndDate();
   tableObject.members = {};
+  tableObject.source = MEMBER_LIST_URL;
+  tableObject.public_fields = ["updated_at", "cycle_end", "members"]
+  tableObject.members_public_fields = ["active", "hours_in_bank"];
+  tableObject.contains_private_data = true;
 
   multiArray.forEach(function(row, i){
 
@@ -58,7 +65,10 @@ function makeTableObject(multiArray){
 
     tableObject.members[row[MEMBER_COL]] = {
         active: status,
-        hours_in_bank: hours
+        hours_in_bank: hours,
+        family_name: row[FAMILYNAME_COL],
+        first_name: row[FIRSTNAME_COL],
+        phone: row[PHONE_COL]
       };
   });
   return tableObject;
@@ -82,7 +92,7 @@ function getCycleEndDate(){
 
   const statsSheet = SpreadsheetApp.openByUrl(MEMBER_LIST_URL).getSheetByName(SHEET_STATS)
   const cell = statsSheet.getRange(DATE_CELL_A1)
-  Logger.log(JSON.stringify(cell.getValue()))
+  // Logger.log(JSON.stringify(cell.getValue()))
 
   return cell.getValue()
 }

@@ -1,0 +1,7 @@
+[Unit]
+Description=Update database files of ledetour-membres
+
+[Service]
+Type=oneshot
+ExecStart=python3 /var/www/ledetour-membres/scripts/get-members-json.py
+EnvironmentFile=/etc/ledetour-membres/ledetour-membres.env
