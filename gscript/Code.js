@@ -1,3 +1,7 @@
+// CHANGELOG
+// - 7 Aug 2021 - indi and fam hours are now taken from "VRAI" columns AD and AE.
+// - 15 Nov 2019 - json now includes hours for all family members.
+
 // Get Member List Url from library DetourTableauUrl
 // Library code: https://script.google.com/u/1/home/projects/1rLXj5KqFRmp91KFSI4wwViFda6-0vG4_QqYGAgWmk_ApYpAtnUv-4Hzr/edit
 const MEMBER_LIST_URL = DetourTableauUrl.loadUrlListeMembres();
